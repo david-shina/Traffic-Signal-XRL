@@ -1,0 +1,10 @@
+|--- pressure <= 0.00
+|   |--- Node1_2_EB_0_occ <= 0.30
+|   |   |--- class: 0
+|   |--- Node1_2_EB_0_occ >  0.30
+|   |   |--- class: 0
+|--- pressure >  0.00
+|   |--- time_since_switch <= 0.07
+|   |   |--- class: 0
+|   |--- time_since_switch >  0.07
+|   |   |--- class: 0

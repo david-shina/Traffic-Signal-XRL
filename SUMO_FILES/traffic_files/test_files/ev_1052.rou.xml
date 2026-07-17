@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- generated on 2026-05-27 01:38:09.869224 by randomTrips.py v1_24_0+0000-b72eb3fabc8
+<configuration>
+    <net-file value="SUMO_FILES/sim.net.xml"/>
+    <output-trip-file value="SUMO_FILES/test_files/ev_1052.rou.xml"/>
+    <prefix value="ev_"/>
+    <vehicle-class value="emergency"/>
+    <fringe-factor value="10"/>
+    <seed value="1052"/>
+    <end value="4200.0"/>
+    <period value="150.0"/>
+</configuration>
+-->
+
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/routes_file.xsd">
+    <vType id="ev__emergency" vClass="emergency"/>
+    <trip id="ev_0" depart="0.00" from="Node2_7_SB" to="Node2_7_NB" type="ev__emergency"/>
+    <trip id="ev_1" depart="150.00" from="-E4" to="-E5" type="ev__emergency"/>
+    <trip id="ev_2" depart="300.00" from="Node2_3_EB" to="E4" type="ev__emergency"/>
+    <trip id="ev_3" depart="450.00" from="Node2_3_WB" to="Node2_3_WB" type="ev__emergency"/>
+    <trip id="ev_4" depart="600.00" from="Node2_7_SB" to="Node2_7_NB" type="ev__emergency"/>
+    <trip id="ev_5" depart="750.00" from="E5" to="Node2_7_NB" type="ev__emergency"/>
+    <trip id="ev_6" depart="900.00" from="Node2_5_SB" to="Node2_3_EB" type="ev__emergency"/>
+    <trip id="ev_7" depart="1050.00" from="Node1_2_WB" to="Node2_7_NB" type="ev__emergency"/>
+    <trip id="ev_8" depart="1200.00" from="Node1_2_EB" to="-E5" type="ev__emergency"/>
+    <trip id="ev_9" depart="1350.00" from="Node2_7_SB" to="Node2_3_EB" type="ev__emergency"/>
+    <trip id="ev_10" depart="1500.00" from="-E5" to="Node2_7_NB" type="ev__emergency"/>
+    <trip id="ev_11" depart="1650.00" from="-E2" to="Node2_3_WB" type="ev__emergency"/>
+    <trip id="ev_12" depart="1800.00" from="Node2_7_SB" to="Node2_7_NB" type="ev__emergency"/>
+    <trip id="ev_13" depart="1950.00" from="E5" to="Node2_7_NB" type="ev__emergency"/>
+    <trip id="ev_14" depart="2100.00" from="Node2_7_SB" to="E2" type="ev__emergency"/>
+    <trip id="ev_15" depart="2250.00" from="Node2_7_SB" to="Node2_7_NB" type="ev__emergency"/>
+    <trip id="ev_16" depart="2400.00" from="E4" to="Node2_3_EB" type="ev__emergency"/>
+    <trip id="ev_17" depart="2550.00" from="Node2_7_SB" to="Node1_2_EB" type="ev__emergency"/>
+    <trip id="ev_18" depart="2700.00" from="Node1_2_WB" to="Node2_7_NB" type="ev__emergency"/>
+    <trip id="ev_19" depart="2850.00" from="E2" to="E5" type="ev__emergency"/>
+    <trip id="ev_20" depart="3000.00" from="Node2_7_SB" to="E2" type="ev__emergency"/>
+    <trip id="ev_21" depart="3150.00" from="Node1_2_WB" to="Node2_7_NB" type="ev__emergency"/>
+    <trip id="ev_22" depart="3300.00" from="-E3" to="Node2_3_EB" type="ev__emergency"/>
+    <trip id="ev_23" depart="3450.00" from="Node2_5_SB" to="E5" type="ev__emergency"/>
+    <trip id="ev_24" depart="3600.00" from="E4" to="Node1_2_WB" type="ev__emergency"/>
+    <trip id="ev_25" depart="3750.00" from="Node2_7_SB" to="Node2_3_EB" type="ev__emergency"/>
+    <trip id="ev_26" depart="3900.00" from="E5" to="-E2" type="ev__emergency"/>
+    <trip id="ev_27" depart="4050.00" from="Node2_5_SB" to="Node2_3_WB" type="ev__emergency"/>
+</routes>
