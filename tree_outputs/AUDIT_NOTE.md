@@ -1,0 +1,4 @@
+- Action rate observed: 2.4% switch (action=1) vs 97.6% stay (action=0) over 85,906 rollout samples (Code/explainabilty.ipynb).
+- Tree fitted with max_depth=2 (first depth crossing 0.85 test accuracy), fidelity=0.976 — equal to the majority-class baseline, so the tree adds no signal.
+- Interpretation: the policy is over-conservative (collapsed toward always-stay); distillation is degenerate rather than a faithful decision boundary.
+- Next to vary: rebalance the reward (blocked vs switch friction), oversample the minority class or use class_weight, raise max_depth, and re-check the action rate before re-distilling.

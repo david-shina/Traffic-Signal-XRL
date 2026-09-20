@@ -1,0 +1,10 @@
+tensorflow>=2.11
+tf-agents>=0.18
+scikit-learn>=1.0
+matplotlib>=3.5
+numpy>=1.21
+pandas>=1.4
+lime>=0.2.0.1
+shap>=0.41.0
+
+# SUMO (external) — not pip-installable; install separately and set SUMO_HOME.
