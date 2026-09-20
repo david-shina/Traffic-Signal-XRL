@@ -219,8 +219,7 @@ Potential extensions for this framework:
 1. **Temporal Analysis**: Add LSTM-based explanations for sequence patterns
 2. **Multi-objective**: Extend to green time optimization alongside switching
 3. **Real-time Monitoring**: Deploy explanations in operational traffic centers
-4. **Comparative Studies**: Run both LIME and SHAP for method comparison
-5. **Addition of Attention**: Add Attention mechanisms for extra means for intrinsic explainations
+4. **Addition of Attention**: Add Attention mechanisms for extra means for intrinsic explainations
 
 ## Citation
 
