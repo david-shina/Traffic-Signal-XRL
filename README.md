@@ -1,10 +1,5 @@
 # Traffic Signal Control Policy Explainability Project
 
-> **Transluce review framing.** Question: which detector features drive the switch/stay decision?
-> Methods: SHAP KernelExplainer, LIME TabularExplainer, surrogate decision-tree distillation, and health checks (action-rate, softmax saturation, state-dim).
-> Honest finding: the policy is over-conservative (2.4% switch rate) and the surrogate tree is degenerate — see `tree_outputs/AUDIT_NOTE.md`.
-> Personal contribution: full pipeline — training, SHAP/LIME explainers, surrogate distillation, and audit; ~60 hours.
-
 ## Overview
 
 This project provides comprehensive model explainability analysis for a Deep Q-Network (DDQN) trained to control traffic signals. It features two complementary explanation methods:
