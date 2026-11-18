@@ -1,0 +1,81 @@
+name: Code Review
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+concurrency:
+  group: code-review-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install OpenCode
+        run: |
+          curl -fsSL https://opencode.ai/install | bash -s -- --version 2.2.6
+          echo "$HOME/.opencode/bin" >> "$GITHUB_PATH"
+
+      - name: Restore OpenCode credentials
+        env:
+          OPENCODE_AUTH_JSON: ${{ secrets.OPENCODE_AUTH_JSON }}
+        run: |
+          if [ -z "$OPENCODE_AUTH_JSON" ]; then
+            echo "::error::Secret OPENCODE_AUTH_JSON is missing. Create it from: opencode auth export"
+            exit 1
+          fi
+          printf '%s' "$OPENCODE_AUTH_JSON" | opencode auth import
+
+      - name: Install the review skill
+        run: |
+          git clone --depth 1 https://github.com/addyosmani/agent-skills.git /tmp/agent-skills
+          mkdir -p ~/.agents/skills ~/.agents/references
+          cp -r /tmp/agent-skills/skills/code-review-and-quality ~/.agents/skills/
+          cp /tmp/agent-skills/references/*.md ~/.agents/references/
+
+      - name: Review the pull request
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          REVIEW_MODEL: ${{ vars.REVIEW_MODEL }}
+        run: |
+          opencode run \
+            --agent code-reviewer \
+            --model "${REVIEW_MODEL:-opencode-go/minimax-m3.1-flash}" \
+            --archived \
+            --auto \
+            --format json \
+            "Review the changes in this pull request.
+
+             Diff against the base commit: git diff ${BASE_SHA}...HEAD
+             Read that diff first, then read the code the change touches: the callers of every changed function, the functions it calls, and the tests.
+             Load the code-review-and-quality skill and follow its workflow.
+
+             Output only the review report, using the template from your instructions, starting with '## Review Summary'.
+             The line below the heading must be '**Verdict:** APPROVE' or '**Verdict:** REQUEST CHANGES'." \
+            > events.jsonl
+          jq -r 'select(.type == "text") | .part.text' events.jsonl > review.md
+          cat review.md
+
+      - name: Comment on the pull request
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: gh pr comment "$PR_NUMBER" --body-file review.md
+
+      - name: Fail the check when changes are requested
+        if: vars.FAIL_ON_REQUEST_CHANGES == 'true'
+        run: |
+          if grep -q "REQUEST CHANGES" review.md; then
+            echo "::error::The review requested changes"
+            exit 1
+          fi
