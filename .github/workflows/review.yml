@@ -23,7 +23,7 @@ jobs:
 
       - name: Install OpenCode
         run: |
-          curl -fsSL https://opencode.ai/install | bash -s -- --version 2.2.6
+          curl -fsSL https://opencode.ai/v2/install | bash -s -- --version 2.2.6
           echo "$HOME/.opencode/bin" >> "$GITHUB_PATH"
 
       - name: Restore OpenCode credentials
